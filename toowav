@@ -1,0 +1,9 @@
+if [ $# -lt 1 ]; then
+    echo "Usage: toowav <path>"
+    exit 1
+fi
+
+spath=$1
+echo `basename $spath`
+
+find $spath -type d | xargs -I {} 
