@@ -1,9 +1,20 @@
+#!/bin/sh
 if [ $# -lt 1 ]; then
     echo "Usage: toowav <path>"
     exit 1
 fi
 
-spath=$1
-echo `basename $spath`
+src=$1
+dest=$HOME/WAVMEDIA/`basename $src`
+echo $dest
 
-find $spath -type d | xargs -I {} 
+find $src -name \*.flac | while read FLAC; do
+    name='basename $FLAC'
+    path=`dirname $FLAC`/
+    path=${path##$src}
+
+    newpath=$dest/$path
+    #mkdir -p $newpath
+
+    echo $newpath
+done
